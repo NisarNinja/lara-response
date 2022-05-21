@@ -1,22 +1,20 @@
 {
-    "name": "easoblue/lara-response",
+    "name": "nisarr/lara-response",
     "description": "Laravel response.",
     "keywords": [
-        "easoblue",
+        "nisarr",
         "lara-response"
     ],
-    "homepage": "https://github.com/easoblue/lara-response",
+    "homepage": "https://github.com/nisarr/lara-response",
     "license": "MIT",
     "type": "library",
-    "authors": [
-        {
-            "name": "Nisar Ahmed",
-            "email": "nisar@easoblue.com",
-            "role": "Full stack web developer"
-        }
-    ],
+    "authors": [{
+        "name": "Nisar Ahmed",
+        "email": "nisar.ahmed.dev@gmail.com",
+        "role": "Full stack web developer"
+    }],
     "require": {
-        "illuminate/support": "^5.8|^6.0|^7.0|^8.0"
+        "illuminate/support": "^5.8|^6.0|^7.0|^8.0|^9.0"
     },
     "require-dev": {
         "orchestra/testbench": "^4.0",
@@ -24,12 +22,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Easoblue\\LaraResponse\\": "src"
+            "Nisarr\\LaraResponse\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Easoblue\\LaraResponse\\Tests\\": "tests"
+            "Nisarr\\LaraResponse\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -43,7 +41,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Easoblue\\LaraResponse\\LaraResponseServiceProvider"
+                "Nisarr\\LaraResponse\\LaraResponseServiceProvider"
             ]
         }
     }

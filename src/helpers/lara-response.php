@@ -1,57 +1,30 @@
 <?php
 
-use Easoblue\LaraResponse\LaraResponse;
+use Nisarr\LaraResponse\Facade\LaraResponseFacade as LaraResponse;
 
+if(!function_exists('respond')){
 
-if(!function_exists('api_response')){
-
-	function api_response($data = '',$status = 200,$msg = '')
+	function respond()
 	{
-	    return LaraResponse::json($data, $status, $msg);
+	    return new LaraResponse;
 	}
 
 }
 
-if(!function_exists('apiResponse')){
 
-	function apiResponse($data = '',$status = 200,$msg = '')
+if(!function_exists('respondOK')){
+
+	function respondOK($data,$code = 200,$msg = null)
 	{
-	    return LaraResponse::json($data, $status, $msg);
-	}
-
-}
-
-if(!function_exists('successResponse')){
-
-	function successResponse($msg = '',$data = '')
-	{
-	    return LaraResponse::json($data, 200, $msg);
-	}
-
-}
-
-if(!function_exists('errorResponse')){
-
-	function errorResponse($data = '',$msg = '',$status = 400)
-	{
-	    return LaraResponse::json($data, $status, $msg);
-	}
-
-}
-
-if(!function_exists('error404Response')){
-
-	function error404Response($msg = 'Not Found',$data = '')
-	{
-	    return LaraResponse::json($data,404, $msg);
+	    return LaraResponse::send($data, $code, $msg);
 	}
 }
 
-if(!function_exists('error400Response')){
+if(!function_exists('respondError')){
 
-	function error400Response($data = '',$msg = 'Validation Error')
+	function respondError($type,$errors,$code = 400,$msg = null,$data = null)
 	{
-	    return LaraResponse::json($data,400, $msg);
+	    return LaraResponse::setErrors($type,$errors)->send($data, $code, $msg);
 	}
 
 }

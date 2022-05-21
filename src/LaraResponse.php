@@ -1,20 +1,55 @@
 <?php
 
-namespace Easoblue\LaraResponse;
+namespace Nisarr\LaraResponse;
 
 class LaraResponse{
 
-	public static function json($data = null,$status = 200,$msg = ''){
+	public $errors;
+	public $success;
 
+	public function __construct(){
+		$this->errors = [
+			'error' => '',
+			'errors' => (object)[],
+		];
+	}
+
+	public function setErrors($errors,$type){
+		$this->errors = [
+			'type' => $type,
+			'errors' => $errors
+		];
+	}
+
+	public function send($data = null,$code = 200,$msg = ''){
+
+		
     	return response([
-    		'status' => $status,
+    		'success' => $this->getSuccessStatus($code),
+    		'code' => $code,
     		'data' => $data,
-    		'msg' => ($msg ? $msg :self::message($status)),
+    		'message' => ($msg ? $msg : $this->message($code)),
+			'errors' => $this->errors
     	]);
 
     }
+
+	private function getSuccessStatus($code){
+		// Check success status from config
+		$success_codes = config('lara-response.success_codes');
+		if(is_array($success_codes)){
+			return in_array($code,$success_codes);
+		}
+		return false;
+
+	}
  
-    public static function message($status){
+    private function message($status){
+
+		// Check if messages are enabled in config
+		if(!config('lara-response.enable_messages')){
+			return '';
+		}
 
     	$messages = config('lara-response.messages') ?? [];
 
@@ -22,7 +57,7 @@ class LaraResponse{
     		return $messages[$status];
     	}
 
-    	return "";
+    	return '';
     }
 
 }
