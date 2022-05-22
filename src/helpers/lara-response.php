@@ -2,13 +2,16 @@
 
 use Nisarr\LaraResponse\Facade\LaraResponseFacade as LaraResponse;
 
+
 if(!function_exists('respond')){
 
-	function respond()
+	function respond($data = 'NISARR_LARA_RESPONSE_EMPTY',$code = 200,$msg = null)
 	{
-	    return new LaraResponse;
+		if($data == 'NISARR_LARA_RESPONSE_EMPTY'){
+			return new LaraResponse;
+		}
+	    return LaraResponse::send($data, $code, $msg);
 	}
-
 }
 
 
@@ -22,7 +25,7 @@ if(!function_exists('respondOK')){
 
 if(!function_exists('respondError')){
 
-	function respondError($type,$errors,$code = 400,$msg = null,$data = null)
+	function respondError($errors,$code = 400,$msg = null,$type = null,$data = null)
 	{
 	    return LaraResponse::setErrors($type,$errors)->send($data, $code, $msg);
 	}
