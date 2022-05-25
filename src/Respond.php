@@ -2,7 +2,7 @@
 
 namespace Nisarr\LaraResponse;
 
-class LaraResponse{
+class Respond{
 
 	public $errors;
 	public $success;

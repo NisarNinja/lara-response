@@ -4,7 +4,7 @@ namespace Nisarr\LaraResponse;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
-use Nisarr\LaraResponse\Facade\LaraResponseFacade;
+use Nisarr\LaraResponse\Facade\RespondFacade;
 
 
 class LaraResponseServiceProvider extends ServiceProvider
@@ -32,7 +32,7 @@ class LaraResponseServiceProvider extends ServiceProvider
 
         $loader = AliasLoader::getInstance();
         
-        $this->app->bind('LaraResponse', LaraResponse::class);
-        $loader->alias('LaraResponse', LaraResponseFacade::class);
+        $this->app->bind('Respond', Respond::class);
+        $loader->alias('Respond', RespondFacade::class);
     }
 }
