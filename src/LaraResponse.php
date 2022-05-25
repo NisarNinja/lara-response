@@ -19,6 +19,7 @@ class LaraResponse{
 			'type' => $type,
 			'errors' => $errors
 		];
+		return $this;
 	}
 
 	public function send($data = null,$code = 200,$msg = ''){
