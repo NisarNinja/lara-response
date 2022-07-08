@@ -4,7 +4,7 @@ namespace Nisarr\LaraResponse;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
-use Nisarr\LaraResponse\Facade\RespondFacade;
+use Nisarr\LaraResponse\Facade\Respond as RespondFacade;
 
 
 class LaraResponseServiceProvider extends ServiceProvider

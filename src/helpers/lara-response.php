@@ -1,33 +1,38 @@
 <?php
 
-use Nisarr\LaraResponse\Facade\LaraResponseFacade as LaraResponse;
+use Nisarr\LaraResponse\Facade\Respond as RespondFacade;
+use Nisarr\LaraResponse\Respond;
 
-
-if(!function_exists('respond')){
-
-	function respond($data = 'NISARR_LARA_RESPONSE_EMPTY',$code = 200,$msg = null)
-	{
-		if($data == 'NISARR_LARA_RESPONSE_EMPTY'){
-			return new LaraResponse;
-		}
-	    return LaraResponse::send($data, $code, $msg);
-	}
+function respond(){
+	return new Respond();
 }
+
+// if(!function_exists('respond')){
+
+// 	function respond($code,$data,$msg = '',$error = null,$error_type = '')
+// 	{
+
+// 		if($data == 'NISARR_LARA_RESPONSE_EMPTY'){
+// 			return new Respond;
+// 		}
+// 	    return Respond::send($data, $code, $msg,$error,$error_type);
+// 	}
+// }
 
 
 if(!function_exists('respondOK')){
 
-	function respondOK($data,$code = 200,$msg = null)
+	function respondOK($data,$msg = null,$code = 200)
 	{
-	    return LaraResponse::send($data, $code, $msg);
+	    return Respond::send($data, $code, $msg);
 	}
 }
 
 if(!function_exists('respondError')){
 
-	function respondError($errors,$code = 400,$msg = null,$type = null,$data = null)
+	function respondError($errors,$code = 400,$msg = null,$type = '',$data = null)
 	{
-	    return LaraResponse::setErrors($type,$errors)->send($data, $code, $msg);
+	    return Respond::setErrors($errors,$type)->send($data, $code, $msg);
 	}
 
 }
